@@ -1,0 +1,16 @@
+<div class="">
+<h3>Manage Permissions</h3>
+  <div>
+    <button class="btn btn-success" ui-sref="admin.permissions.create">Create Permission</button>
+  </div>
+<br>
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="permission in permissions">
+        <a ui-sref="admin.permissions.details({ permissionId: permission._id })">
+          <strong>{{permission.name}}</strong><br>
+          <span class="text-muted">{{permission.description}}</span>
+        </a>
+        <a ng-click="delete(permission)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>
+    </li>
+  </ul>
+</div>

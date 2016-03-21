@@ -1,0 +1,19 @@
+<div class="">
+    <h3>Notifications History</h3>
+    <br>
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="item in history">
+            <a ui-sref="admin.history.details({ id: item._id })">
+                <i>{{item.type}}:</i> <strong>{{item.subject | limitTo:100}}</strong> <i>sent to</i>
+                <span ng-show="item.users.length">
+                  <strong>{{item.users.length}}</strong> <i>user(s)</i>
+                </span>
+                <span ng-show="item.groups.length">
+                  <strong>{{item.groups.length}}</strong> <i>group(s)</i>
+                </span>
+                <br>
+                <span class="text-muted">{{item.time | date:"MM/dd/yyyy 'at' h:mm a"}}</span>
+            </a>
+        </li>
+    </ul>
+</div>

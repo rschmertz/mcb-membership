@@ -1,0 +1,94 @@
+<div class='create-notification-page'>
+    <h3>Create Notification</h3>
+<!--     <h4>Type:</h4> -->
+
+<ul class="nav nav-tabs">
+  <li role="presentation" ng-class="{ active: vm.isType('email') }"><a href="javascript:void(0);" ng-click="vm.setType('email')"><strong>EMAIL</strong></a></li>
+  <li role="presentation" ng-class="{ active: vm.isType('sms') }"><a href="javascript:void(0);" ng-click="vm.setType('sms')"><strong>SMS</strong></a></li>
+</ul>
+
+    <!-- <div class="btn-group" role="group">
+        <button class="btn btn-default" ng-class="{ active: vm.isType('email') }" ng-click="vm.setType('email')">Email</button>
+        <button class="btn btn-default" ng-class="{ active: vm.isType('sms') }" ng-click="vm.setType('sms')">SMS</button>
+    </div> -->
+    <br>
+    <br>
+    <br>
+
+    <div class="row">
+        <div class="col-lg-8 col-md-10">
+            <div class="panel panel-default">
+                <div class="panel-heading">Send To:
+                    <div class="btn-group" role="group">
+                        <button class="btn btn-default" ng-class="{ active: vm.isMode('users') }" ng-click="vm.setMode('users')">Users</button>
+                        <button class="btn btn-default" ng-class="{ active: vm.isMode('groups') }" ng-click="vm.setMode('groups')">Groups</button>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+
+                    <div class="btn-group" role="group">
+                        <button class="btn btn-default" ng-class="{ active: !vm.activeOnly }" ng-click="vm.setActiveFilter(false)">All</button>
+                        <button class="btn btn-default" ng-class="{ active: vm.activeOnly }" ng-click="vm.setActiveFilter(true)">Active Only</button>
+                    </div>
+
+		    <button ng-click="vm.clearAll()" class="pull-right">Clear All</button>
+		    <button ng-click="vm.selectAll()" class="pull-right">Select All</button>
+                    <br />
+                    <br />
+
+                    <div class="list-group" ng-show="vm.isMode('users')">
+                        <a href="javascript:void(0);" class="list-group-item" ng-repeat="u in vm.users | filter: vm.activeFilter" ng-click="vm.checkUser(u)" ng-class="{active: vm.hasUser(u)}">
+                            <h4 class="list-group-item-heading">{{u.firstName + ' ' + u.lastName}}</h4>
+                            <p class="list-group-item-text" ng-if="vm.isType('email')"><i class="fa fa-envelope-o"></i> {{u.email}}</p>
+                            <p class="list-group-item-text" ng-if="vm.isType('sms')"><i class="fa fa-phone"></i> {{u['Cell Phone']}}</p>
+                        </a>
+                    </div>
+
+                    <div class="list-group" ng-show="vm.isMode('groups')">
+                        <a href="javascript:void(0);" class="list-group-item" ng-repeat="g in vm.groups | filter: vm.activeFilter" ng-click="vm.checkGroup(g)" ng-class="{active: vm.hasGroup(g)}">
+                            <h4 class="list-group-item-heading">{{g.name}}</h4>
+                            <p class="list-group-item-text">{{g.description}}</p>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading">{{vm.isType('email') ? 'Subject' : 'Message'}}</div>
+                <div class="panel-body">
+                    <input type='text' ng-model="vm.subject" class="form-control" />
+                </div>
+            </div>
+
+            <div class="panel panel-default" ng-show="vm.isType('email')">
+                <div class="panel-heading">Message body</div>
+                <div class="panel-body">
+                    <textarea cols="30" rows="10" ng-model="vm.message" class="form-control"></textarea>
+                </div>
+            </div>
+
+            <div class="panel panel-default" ng-show="vm.isType('email')">
+                <div class="panel-heading">Add Attachment</div>
+                <div class="panel-body">
+                    <div class="input-group">
+                      <span class="input-group-btn">
+                        <span class="btn btn-primary btn-file">
+                          Browse… <input ng-file-select ng-model="vm.attachmentFile" ng-file-change="vm.fileSelected($files, $event)" type="file">
+                        </span>
+                      </span>
+                      <input type="text" ng-model="vm.attachment" class="form-control" readonly="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-dark btn-lg" ng-click="vm.send()">&nbsp;&nbsp;Send&nbsp;&nbsp;</button>
+    <div class="alert alert-danger" ng-show="vm.isValidationError">Select at least one user or group and fill message body first.</div>
+    <div class="alert alert-success" ng-show="vm.isSent">Notification successfully sent.</div>
+    <div class="alert alert-warning" ng-show="vm.isLoading">Loading...</div>
+    <div class="clearfix"></div>
+    <br>
+</div>

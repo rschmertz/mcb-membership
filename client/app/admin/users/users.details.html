@@ -1,0 +1,197 @@
+<div class="">
+  <div class="row">
+    <div class="">
+      <a ui-sref="admin.users.list" class="btn btn-link btn-link-back"><i class="fa fa-long-arrow-left"></i> Back to Users list</a>
+    </div>
+    <div class="col-sm-12">
+      <h3 ng-show="isNewUser">Create new User</h3>
+      <h3 ng-hide="isNewUser">User Details</h3>
+    </div>
+    <div class="col-sm-12">
+      <form class="form" name="form" ng-submit="save(form)" novalidate>
+
+        <input style="display:none">
+        <input type="password" style="display:none">
+
+        <div class="form-group" ng-class="{ 'has-success': form.firstName.$valid && submitted,
+                                            'has-error': form.firstName.$invalid && submitted }">
+          <label>First Name</label>
+
+          <input type="text" name="firstName" class="form-control" ng-model="user.firstName"
+                 required/>
+          <p class="help-block" ng-show="form.firstName.$error.required && submitted">
+            A first name is required
+          </p>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-success': form.lastName.$valid && submitted,
+                                            'has-error': form.lastName.$invalid && submitted }">
+          <label>Last Name</label>
+
+          <input type="text" name="lastName" class="form-control" ng-model="user.lastName"
+                 required/>
+          <p class="help-block" ng-show="form.lastName.$error.required && submitted">
+            A last name is required
+          </p>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-success': form.email.$valid && submitted,
+                                            'has-error': form.email.$invalid && submitted }">
+          <label>Email</label>
+
+          <input type="email" name="email" class="form-control" ng-model="user.email"
+                 required
+                 mongoose-error/>
+          <p class="help-block" ng-show="form.email.$error.email && submitted">
+            Doesn't look like a valid email.
+          </p>
+          <p class="help-block" ng-show="form.email.$error.required && submitted">
+            What's your email address?
+          </p>
+          <p class="help-block" ng-show="form.email.$error.mongoose">
+            {{ errors.email }}
+          </p>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-success': form.streetAddress1.$valid && submitted,
+                                            'has-error': form.streetAddress1.$invalid && submitted }">
+          <label>Street Address 1</label>
+
+          <input type="text" name="streetAddress1" class="form-control" ng-model="user['Street Address 1']"/>
+        </div>
+        <div class="form-group" ng-class="{ 'has-success': form.streetAddress1.$valid && submitted,
+                                            'has-error': form.streetAddress1.$invalid && submitted }">
+          <label>Street Address 2</label>
+
+          <input type="text" name="streetAddress2" class="form-control" ng-model="user['Street Address 2']"/>
+        </div>
+        <div class="form-group" ng-class="{ 'has-success': form.streetAddress2.$valid && submitted,
+                                            'has-error': form.streetAddress2.$invalid && submitted }">
+          <label>City</label>
+
+          <input type="text" name="streetAddress2" class="form-control" ng-model="user.City"/>
+        </div>
+        <div class="form-group" ng-class="{ 'has-success': form.State.$valid && submitted,
+                                            'has-error': form.State.$invalid && submitted }">
+          <label>State</label>
+
+          <input type="text" name="State" class="form-control" ng-model="user.State"/>
+        </div>
+        <div class="form-group" ng-class="{ 'has-success': form.Zip.$valid && submitted,
+                                            'has-error': form.Zip.$invalid && submitted }">
+          <label>Zip</label>
+
+          <input type="text" name="Zip" class="form-control" ng-model="user.Zip"/>
+        </div>
+        <div class="form-group" ng-class="{ 'has-success': form.homePhone.$valid && submitted,
+                                            'has-error': form.homePhone.$invalid && submitted }">
+          <label>Home Phone</label>
+
+          <input type="text" name="homePhone" class="form-control" ng-model="user['Home Phone']"/>
+        </div>
+        <div class="form-group" ng-class="{ 'has-success': form.workPhone.$valid && submitted,
+                                            'has-error': form.workPhone.$invalid && submitted }">
+          <label>Work Phone</label>
+
+          <input type="text" name="" class="form-control" ng-model="user['Work Phone']"/>
+        </div>
+        <div class="form-group" ng-class="{ 'has-success': form.workExt.$valid && submitted,
+                                            'has-error': form.workExt.$invalid && submitted }">
+          <label>Work Extension</label>
+
+          <input type="text" name="workExt" class="form-control" ng-model="user['Work Ext']"/>
+        </div>
+        <div class="form-group" ng-class="{ 'has-success': form.cellPhone.$valid && submitted,
+                                            'has-error': form.cellPhone.$invalid && submitted }">
+          <label>Cell Phone</label>
+
+          <input type="text" name="cellPhone" class="form-control" ng-model="user['Cell Phone']" />
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-success': form.instrument1.$valid && submitted,
+                                            'has-error': form.instrument1.$invalid && submitted }">
+          <label>Instrument 1</label>
+
+          <input type="text" name="instrument1" class="form-control" ng-model="user['Instrument 1']"/>
+        </div>
+        <div class="form-group" ng-class="{ 'has-success': form.instrument2.$valid && submitted,
+                                            'has-error': form.instrument2.$invalid && submitted }">
+          <label>Instrument 2</label>
+
+          <input type="text" name="instrument2" class="form-control" ng-model="user['Instrument 2']"/>
+        </div>
+        <div class="form-group" ng-class="{ 'has-success': form.instrument3.$valid && submitted,
+                                            'has-error': form.instrument3.$invalid && submitted }">
+          <label>Instrument 3</label>
+
+          <input type="text" name="instrument3" class="form-control" ng-model="user['Instrument 3']"/>
+        </div>
+        <div class="form-group" ng-class="{ 'has-success': form.mdAlumni.$valid && submitted,
+                                            'has-error': form.mdAlumni.$invalid && submitted }">
+          <label>UMD Alumni</label>
+
+          <input type="text" name="mdAlumni" class="form-control" ng-model="user['MD Alumni']"/>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-success': form.facultyStaff.$valid && submitted,
+                                            'has-error': form.facultyStaff.$invalid && submitted }">
+          <label>Faculty/Staff</label>
+
+          <input type="text" name="facultyStaff" class="form-control" ng-model="user['Faculty/Staff']"/>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-success': form.dateJoined.$valid && submitted,
+                                            'has-error': form.dateJoined.$invalid && submitted }">
+          <label>Year Joined</label>
+
+          <input type="text" name="dateJoined" class="form-control" ng-model="user['Semester/Year Joined']"/>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-success': form.membershipLevel.$valid && submitted,
+                                            'has-error': form.membershipLevel.$invalid && submitted }">
+          <label>Membership Level</label>
+
+	  <select ng-options="l for l in membershipLevels" placeholder="Active memver?" name="membershipLevel" ng-model="user['Membership level']" class="form-control" required>
+	  </select>
+          <p class="help-block" ng-show="form.membershipLevel.$error.required && submitted">
+            Membership level is required
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label>Groups</label>
+
+          <div class="list-group">
+            <a href="javascript:void(0)" class="list-group-item" ng-class="{ active: hasGroup(g) }" ng-click="checkGroup(g)" ng-repeat="g in groups">
+              {{g.name}}
+            </a>
+          </div>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-success': form.password.$valid && submitted,
+                                            'has-error': form.password.$invalid && submitted }">
+          <label><span ng-hide="isNewUser">Change </span>Password</label>
+
+          <input type="password" name="password" class="form-control" ng-model="user.password"
+                 ng-minlength="3"
+                 ng-required='isNewUser'
+                 mongoose-error/>
+          <p class="help-block"
+             ng-show="(form.password.$error.minlength || form.password.$error.required) && submitted">
+            Password must be at least 3 characters.
+          </p>
+          <p class="help-block" ng-show="form.password.$error.mongoose">
+            {{ errors.password }}
+          </p>
+        </div>
+
+        <div>
+          <button class="btn btn-inverse btn-lg btn-login" type="submit">
+            Save
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <hr>
+</div>

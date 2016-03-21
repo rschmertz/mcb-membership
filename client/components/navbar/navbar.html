@@ -1,0 +1,63 @@
+<nav class="navbar navbar-static-top" role="navigation" ng-controller="NavbarCtrl" style="margin-bottom: 0">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+        <a class="navbar-brand" href="/home"><strong>LEAN35 NOTIFIER</strong></a>
+    </div>
+
+    <ul class="navbar-top-links nav navbar-right">
+      <li ng-show="isAdmin()" ng-class="{active: isActive('/admin/users/quick-view')}"><a href="/admin/users/quick-view">Member Full View</a></li>
+      <li ng-show="isAdmin()" ng-class="{active: isActive('/admin')}"><a href="/admin/users">Admin</a></li>
+      <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/signup')}"><a href="/signup">Register</a></li>
+      <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/login')}"><a href="/login">Login</a></li>
+      <li class="dropdown" ng-show="isLoggedIn()">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{ getCurrentUser() }} <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="/settings"><i class="fa fa-fw fa-user"></i> Profile</a>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a ng-click="logout()" href="javascript:void(0);"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+            </li>
+        </ul>
+      </li>
+    </ul>
+      
+         
+    <div class="navbar-default sidebar" role="navigation" ng-show="isActive('/admin')">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                  
+          <li ng-repeat="item in adminMenu" >
+            <a  ng-show="!item.subMenu" ng-href="{{item.link}}" ng-class="{active: isActive(item.link)}">
+              <i class="fa fa-fw {{item.icon}}"></i>
+              &nbsp;{{item.title}}
+              <i class="fa fa-angle-right pull-right"></i>
+            </a>
+
+            <div ng-show="item.subMenu" ng-class="{active: isActive(item.link)}" ng-click="isCollapsed = !isCollapsed">
+              <i class="fa fa-fw {{item.icon}}"></i>
+              &nbsp;{{item.title}}
+              <i class="fa fa-angle-right pull-right"></i>
+            </div>
+
+            <ul ng-if="item.subMenu" class="nav nav-second-level" collapse="isCollapsed">
+              <li ng-repeat="subItem in item.subMenu">
+                <a ng-href="{{subItem.link}}" ng-class="{active: isActive(subItem.link)}">
+                  <i class="fa fa-fw {{subItem.icon}}"></i>
+                  &nbsp;{{subItem.title}}
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+    </div>
+    </div>
+    <!-- /.navbar-collapse -->
+</nav>

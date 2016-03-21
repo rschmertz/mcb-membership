@@ -1,0 +1,58 @@
+.navbar {
+  background: #555;
+  color: white;
+  font-family: 'Lato', sans-serif;
+
+  .navbar-brand {
+    color: white;
+  }
+
+  .navbar-top-links li {
+    a {
+      color: #ccc;
+    }
+
+    a:hover, a:active, a:focus {
+      background: inherit;
+      color: white;  
+    }
+
+    &.active, &.open {
+      background: inherit;
+      a {
+        background: inherit;
+        color: white;  
+      }
+    }
+
+    .dropdown-menu a {
+      color: #333;
+    }
+  }
+}
+
+.sidebar ul li {
+  border-top:  1px solid #DFDFDF;
+  border-bottom: none;
+
+  a, div {
+    padding: 13px 15px;
+    background-color: #ECECEC;
+    color: #555;
+    font-size: 15px;
+    font-family: 'Lato', sans-serif;
+    cursor: pointer;
+
+    .fa.pull-right:before {
+      font-size: 20px;
+    }
+  }
+  a:hover {
+    text-decoration: none;
+    background-color: #f8f8f8;
+  }  
+  a.active {
+    background-color: #DFDFDF;
+    font-weight: bold;
+  } 
+}

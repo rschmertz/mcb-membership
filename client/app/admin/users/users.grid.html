@@ -1,0 +1,18 @@
+<div>
+  <h3>Membership View</h3>
+  <button class="selected-row-action" ng-click="deleteMember()" ng-disabled="!rowSelected()">Delete member</button>
+  <button class="selected-row-action" ng-click="editMember()" ng-disabled="!rowSelected()">Edit member</button>
+  <!--
+  <button class="selected-row-action" ng-click="resetPassword()" ng-disabled="!rowSelected()">Reset Password</button>
+  -->
+  <div ui-grid="gridOptions" ui-grid-cellNav ui-grid-selection ui-grid-exporter  class="memberList"></div>
+  <script type="text/ng-template" id="confirmationDialog">
+     <div class="modal-body">
+       {{question}}
+     </div>
+     <div class="modal-footer">
+       <button class="btn btn-primary" ng-click="ok()">OK</button>
+       <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+     </div>
+  </script>
+</div>

@@ -1,0 +1,16 @@
+<div class="">
+<h3>Manage Users</h3>
+  <div>
+    <button class="btn btn-success" ui-sref="admin.users.create">Create User</button>
+  </div>
+<br>
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="user in users">
+        <a ui-sref="admin.users.details({ userId: user._id })">
+          <strong>{{user.firstName}} {{user.lastName}}</strong><br>
+          <span class="text-muted">{{user.email}}</span>
+        </a>
+        <a ng-click="delete(user)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>
+    </li>
+  </ul>
+</div>

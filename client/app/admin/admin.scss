@@ -1,0 +1,60 @@
+.trash { color:rgb(209, 91, 71); }
+
+.text-danger {
+  color: red;
+}
+
+.selected-row-action {
+    margin: 10px;
+}
+
+.text-success {
+  color: green;
+}
+
+.btn-dark {
+  background: #333;
+  color: #E0E0E0;
+
+  &:hover, &:active, &:focus {
+    color: white;
+    background: #555;
+  }
+}
+
+.create-notification-page {
+
+  .btn-dark {
+    float: left;
+  }
+
+  .alert {
+    display: block;
+    float: left;
+    margin-left: 40px;
+    padding: 13px;
+  }
+
+  .btn-file {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+  }
+
+}
+
