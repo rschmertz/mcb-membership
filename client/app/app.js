@@ -17,7 +17,9 @@ angular.module('usersManagementApp', [
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
-      .otherwise('/admin/users/quick-view');
+      .otherwise(function($injector, $location) {
+          return '/home';
+      });
 
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');

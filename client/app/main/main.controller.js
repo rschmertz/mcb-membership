@@ -1,7 +1,10 @@
 'use strict';
 
 angular.module('usersManagementApp')
-  .controller('MainCtrl', function ($scope, $http, socket) {
+  .controller('MainCtrl', function ($scope, $http, socket, Auth) {
+      $scope.auth = Auth;
+
+      $scope.junk = 'Jimbo';
     $scope.awesomeThings = [];
 
     $http.get('/api/things').success(function(awesomeThings) {
