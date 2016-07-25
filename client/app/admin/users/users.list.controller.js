@@ -12,7 +12,11 @@ angular.module('usersManagementApp')
       $scope.users = _.without($scope.users, user);
     };
   })
-  .controller('UsersGridCtrl', function ($scope, $http, $location, $modal, User) {
+  .controller('UsersGridCtrl', function ($scope, $http, $location, $modal, Auth, User)
+{
+
+    var user = angular.copy(Auth.getCurrentUser());
+    user.isAdmin = !!_.find(user.groups, {name: "Administrators"});
 
     // Use the User $resource to fetch all users
     $scope.users = User.query();
@@ -49,7 +53,7 @@ angular.module('usersManagementApp')
             controller: "ConfirmDialogCtrl",
             resolve: {
                 question: function () {
-                    return "Reset password for " + member.firstName + 
+                    return "Reset password for " + member.firstName +
                         " " + member.lastName + "?"
                 },
             },
@@ -132,7 +136,7 @@ angular.module('usersManagementApp')
         onRegisterApi: function (gridApi) {
             $scope.gridApi = gridApi;
         },
-        columnDefs: columnDefs,
+        columnDefs: user.isAdmin ? columnDefs : restrictedColDefs,
         data: $scope.users
     };
   })
