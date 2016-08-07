@@ -17,6 +17,7 @@ angular.module('usersManagementApp')
 
     var user = angular.copy(Auth.getCurrentUser());
     user.isAdmin = !!_.find(user.groups, {name: "Administrators"});
+    $scope.user = user;
 
     // Use the User $resource to fetch all users
     $scope.users = User.query();

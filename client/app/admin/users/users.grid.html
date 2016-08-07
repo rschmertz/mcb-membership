@@ -1,7 +1,7 @@
 <div>
   <h3>Membership View</h3>
-  <button class="selected-row-action" ng-click="deleteMember()" ng-disabled="!rowSelected()">Delete member</button>
-  <button class="selected-row-action" ng-click="editMember()" ng-disabled="!rowSelected()">Edit member</button>
+  <button class="selected-row-action" ng-click="deleteMember()" ng-if="user.isAdmon" ng-disabled="!rowSelected()">Delete member</button>
+  <button class="selected-row-action" ng-click="editMember()" ng-if="user.isAdmon" ng-disabled="!rowSelected()">Edit member</button>
   <!--
   <button class="selected-row-action" ng-click="resetPassword()" ng-disabled="!rowSelected()">Reset Password</button>
   -->
