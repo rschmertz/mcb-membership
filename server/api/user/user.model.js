@@ -168,6 +168,21 @@ UserSchema.methods = {
     if (!password || !this.salt) return '';
     var salt = new Buffer(this.salt, 'base64');
     return crypto.pbkdf2Sync(password, salt, 10000, 64).toString('base64');
+  },
+
+  hasRole: function (roleRequired, cb) {
+      var thisUser = this;
+      Group.findOne({ name: roleRequired}, function(err, role) {
+          if (err) {
+              console.log("err!");
+              return cb (err);
+          }
+          var _hasRole = _.some(thisUser.groups, function(g) {
+              var h = role._id.toString();
+              return (g == h);
+          });
+          return cb(null, _hasRole);
+      });
   }
 };
 

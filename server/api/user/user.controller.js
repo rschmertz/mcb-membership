@@ -12,8 +12,10 @@ var validationError = function(res, err) {
   return res.json(422, err);
 };
 
-function isAdmin(user) {
-    return _.contains(user.groups, 'Administrators');
+function checkAdmin(user, cb) { // I hate this
+    return user.hasRole('Administrators', function(err, isAdmin) {
+        cb(err, isAdmin);
+    });
 };
 
 /**
@@ -22,25 +24,27 @@ function isAdmin(user) {
 exports.index = function(req, res) {
 
     console.log("req.user is", req.user);
-    if (isAdmin(req.user)) {
-        User.find({}, '-salt -hashedPassword', function (err, users) {
-            if(err) return res.send(500, err);
-            res.json(200, users);
-        });
-    } else {
-        User.find({'Membership level': 'Active'})
-            .select({
-                firstName: 1,
-                lastName: 1,
-                'Instrument 1': 1,
-                City: 1,
-                'Group participation': 1,
-            })
-            .exec(function (err, users) {
+    checkAdmin(req.user, function returnIndex(err, isAdmin) {
+        if (isAdmin) {
+            User.find({}, '-salt -hashedPassword', function (err, users) {
                 if(err) return res.send(500, err);
                 res.json(200, users);
             });
-    };
+        } else {
+            User.find({'Membership level': 'Active'})
+                .select({
+                    firstName: 1,
+                    lastName: 1,
+                    'Instrument 1': 1,
+                    City: 1,
+                    'Group participation': 1,
+                })
+                .exec(function (err, users) {
+                    if(err) return res.send(500, err);
+                    res.json(200, users);
+                });
+        };
+    })
 };
 
 
