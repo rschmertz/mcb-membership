@@ -6,6 +6,7 @@ angular.module('usersManagementApp')
       .state('main', {
         url: '/home',
         templateUrl: 'app/main/main.html',
+        authenticate: true,
         controller: 'MainCtrl'
       });
   });

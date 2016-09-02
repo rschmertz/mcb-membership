@@ -12,7 +12,12 @@ angular.module('usersManagementApp')
       $scope.users = _.without($scope.users, user);
     };
   })
-  .controller('UsersGridCtrl', function ($scope, $http, $location, $modal, User) {
+  .controller('UsersGridCtrl', function ($scope, $http, $location, $modal, Auth, User)
+{
+
+    var user = angular.copy(Auth.getCurrentUser());
+    user.isAdmin = !!_.find(user.groups, {name: "Administrators"});
+    $scope.user = user;
 
     // Use the User $resource to fetch all users
     $scope.users = User.query();
@@ -49,7 +54,7 @@ angular.module('usersManagementApp')
             controller: "ConfirmDialogCtrl",
             resolve: {
                 question: function () {
-                    return "Reset password for " + member.firstName + 
+                    return "Reset password for " + member.firstName +
                         " " + member.lastName + "?"
                 },
             },
@@ -82,7 +87,46 @@ angular.module('usersManagementApp')
             $scope.gridOptions.data = $scope.users; // for refresh
         });
     }
-              
+
+    var columnDefs = [
+        {name: "lastName",
+         width: 110},
+        {name: "firstName",
+         width: 100},
+        {name: "Membership level",
+         width: 108},
+        {name: "email",
+         width: 190},
+        {name: "Instrument 1",
+         width: 130},
+        {name: "Cell Phone",
+         width: 110},
+        {name: "Home Phone",
+         width: 110},
+        {name: "Work Phone",
+         width: 110},
+        {name: "Work Ext",
+         width: 90},
+        {name: "Street Address 1",
+         width: 220},
+        {name: "Street Address 2",
+         enableSorting: false,
+         width: 130},
+        {name: "City",
+         width: 110},
+        {name: "State",
+         width: 70},
+        {name: "Zip",
+         width: 55},
+    ];
+
+    var restrictedColDefs = _.filter(columnDefs, function (o) {
+        return _.find(['lastName', 'firstName', 'Instrument 1'], function (key) {
+            return key == o.name;
+        });
+    });
+
+      console.log("restricted column defs:", restrictedColDefs);
 
     $scope.gridOptions = {
         enableGridMenu: true,
@@ -93,37 +137,7 @@ angular.module('usersManagementApp')
         onRegisterApi: function (gridApi) {
             $scope.gridApi = gridApi;
         },
-        columnDefs: [
-            {name: "lastName",
-             width: 110},
-            {name: "firstName",
-             width: 100},
-            {name: "Membership level",
-             width: 108},
-            {name: "email",
-             width: 190},
-            {name: "Instrument 1",
-             width: 130},
-            {name: "Cell Phone",
-             width: 110},
-            {name: "Home Phone",
-             width: 110},
-            {name: "Work Phone",
-             width: 110},
-            {name: "Work Ext",
-             width: 90},
-            {name: "Street Address 1",
-             width: 220},
-            {name: "Street Address 2",
-             enableSorting: false,
-             width: 130},
-            {name: "City",
-             width: 110},
-            {name: "State",
-             width: 70},
-            {name: "Zip",
-             width: 55},
-        ],
+        columnDefs: user.isAdmin ? columnDefs : restrictedColDefs,
         data: $scope.users
     };
   })

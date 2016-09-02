@@ -12,15 +12,39 @@ var validationError = function(res, err) {
   return res.json(422, err);
 };
 
+function checkAdmin(user, cb) { // I hate this
+    return user.hasRole('Administrators', function(err, isAdmin) {
+        cb(err, isAdmin);
+    });
+};
+
 /**
  * Get list of users
- * restriction: 'admin'
  */
 exports.index = function(req, res) {
-  User.find({}, '-salt -hashedPassword', function (err, users) {
-    if(err) return res.send(500, err);
-    res.json(200, users);
-  });
+
+    console.log("req.user is", req.user);
+    checkAdmin(req.user, function returnIndex(err, isAdmin) {
+        if (isAdmin) {
+            User.find({}, '-salt -hashedPassword', function (err, users) {
+                if(err) return res.send(500, err);
+                res.json(200, users);
+            });
+        } else {
+            User.find({'Membership level': 'Active'})
+                .select({
+                    firstName: 1,
+                    lastName: 1,
+                    'Instrument 1': 1,
+                    City: 1,
+                    'Group participation': 1,
+                })
+                .exec(function (err, users) {
+                    if(err) return res.send(500, err);
+                    res.json(200, users);
+                });
+        };
+    })
 };
 
 

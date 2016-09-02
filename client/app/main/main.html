@@ -1,9 +1,12 @@
 <header class="hero-unit" id="banner">
   <div class="container">
-    <h3>User Management Portal</h3>
+    <h3>MCB Membership Portal</h3>
 
-    <h4>
+    <h4 ng-if="auth.isAdmin()">
       Click on "Admin" in the top menu to access all the administrative features
+    </h4>
+    <h4 ng-if="!auth.isAdmin()">
+      Select items from above.... more coming soon!
     </h4>
   </div>
 </header>

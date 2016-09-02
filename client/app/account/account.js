@@ -13,6 +13,11 @@ angular.module('usersManagementApp')
         templateUrl: 'app/account/signup/signup.html',
         controller: 'SignupCtrl'
       })
+      .state('grid', { /* a state called 'users.grid' doesn't work here... */
+          url: '/quick-view',
+          templateUrl: 'app/admin/users/users.grid.html',
+          controller: 'UsersGridCtrl'
+      })
       .state('settings', {
         url: '/settings',
         templateUrl: 'app/account/settings/settings.html',
