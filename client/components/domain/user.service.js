@@ -13,7 +13,7 @@ angular.module('usersManagementApp')
         }
       },
       resetPassword: {
-        method: 'PUT',
+        method: 'POST',
         params: {
           controller:'password'
         }

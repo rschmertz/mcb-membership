@@ -6,6 +6,7 @@ var Group = require('../group/group.model');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
+var sendgrid  = require('sendgrid')(config.sendgrid.userName, config.sendgrid.password);
 var _ = require('lodash');
 
 var validationError = function(res, err) {
@@ -126,17 +127,28 @@ exports.changePassword = function(req, res, next) {
  */
 exports.resetPassword = function(req, res, next) {
     var userId = req.user._id;
+    var newPass = Math.floor(Math.random() * 999999999999).toString(36);
     User.findById(userId, function (err, user) {
-    if(user.authenticate(oldPass)) {
-      user.password = newPass;
-      user.save(function(err) {
-        if (err) return validationError(res, err);
-        res.send(200);
-      });
-    } else {
-      res.send(403);
-    }
-  });
+        user.password = newPass;
+        user.save(function(err) {
+            var emailMessage = new sendgrid.Email({
+                to: user.email,
+                from:     config.sendgrid.fromEmail,
+                fromname:     config.sendgrid.fromName,
+                subject:  "Password reset for MD Community Band",
+                text: 'Your password for logging in to ' +
+                    'https://members.marylandcommunityband.org has been ' +
+                    'reset. Please log in using the password below, then change it to a new password of your own choosing.\n\n    ' + newPass,
+            });
+
+            console.log("calling sendgrid");
+            sendgrid.send(emailMessage, function(err, json) {
+                console.log("sendgrid called");
+            });
+            if (err) return validationError(res, err);
+            res.send(200);
+        });
+    });
 };
 
 /**
