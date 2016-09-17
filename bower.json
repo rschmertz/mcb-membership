@@ -14,7 +14,7 @@
     "angular-bootstrap": "~0.11.0",
     "angular-ui-grid": "~3.0.0-rc.19",
     "font-awesome": ">=4.1.0",
-    "lodash": "~2.4.1",
+    "lodash": "^4.15.0",
     "angular-socket-io": "~0.6.0",
     "angular-ui-router": "~0.2.10",
     "ng-file-upload": "=2.1.1"
