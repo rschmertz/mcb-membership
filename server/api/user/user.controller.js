@@ -126,7 +126,7 @@ exports.changePassword = function(req, res, next) {
  * Reset a user's password
  */
 exports.resetPassword = function(req, res, next) {
-    var userId = req.user._id;
+    var userId = req.params.id;
     var newPass = Math.floor(Math.random() * 999999999999).toString(36);
     User.findById(userId, function (err, user) {
         user.password = newPass;
@@ -144,6 +144,9 @@ exports.resetPassword = function(req, res, next) {
             console.log("calling sendgrid");
             sendgrid.send(emailMessage, function(err, json) {
                 console.log("sendgrid called");
+                if (err) {
+                    console.log("Error sending password update: ", err);
+                }
             });
             if (err) return validationError(res, err);
             res.send(200);

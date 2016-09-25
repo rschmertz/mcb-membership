@@ -60,7 +60,7 @@ angular.module('usersManagementApp')
             },
         });
         modal.result.then(function (value) {
-            User.resetPassword({id: member._id});
+            User.resetPassword({id: member._id}, {caveat: "Maybe POST isn't the right way to go?"});
         });          
       }
 
