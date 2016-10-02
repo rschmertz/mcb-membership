@@ -13,6 +13,7 @@ angular.module('usersManagementApp')
         url: '/docs',
         templateUrl: 'app/main/docs/docs.html',
         authenticate: true,
-        controller: 'DocListCtrl'
+        controller: 'DocListCtrl',
+        controllerAs: 'doclist',
       });
   });

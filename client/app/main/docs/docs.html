@@ -1,5 +1,29 @@
 <div>
-  <h3>Reference Documents</h3>
-  Here is text.
-  {{hello}}
+    <div class="section_header">
+      <h3>Reference Files</h3>
+      <p>
+	Here are files of general interest, primarily for band members.
+      </p>
+    </div>
+    <div class="file-list-lg">
+      <div class="row">
+
+    <div class="col-sm-3" ng-repeat="item in doclist.doclist1">
+      <div class="file-icon">
+	<img src="{{ item.attachments[0].icon }}">
+      </div>
+<!--
+      <h6><a href="{{ doclist.adjustUrlSpecial(item.attachments) }}">{{item.attachments[0].name}}</a></h6>
+      -->
+      <h6><a href="{{ item.attachments[0].fixedUrl }}">{{item.attachments[0].name}}</a></h6>
+      {{item.name}}
+    </div>
+
+
+      </div>
+       <div class="row">
+	<file-item ng-repeat="item in doclist.doclist2">
+	</file-item>
+      </div>
+    </div>
 </div>
