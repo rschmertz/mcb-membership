@@ -8,5 +8,11 @@ angular.module('usersManagementApp')
         templateUrl: 'app/main/main.html',
         authenticate: true,
         controller: 'MainCtrl'
+      })
+      .state('docs', {
+        url: '/docs',
+        templateUrl: 'app/main/docs/docs.html',
+        authenticate: true,
+        controller: 'MainCtrl'
       });
   });
