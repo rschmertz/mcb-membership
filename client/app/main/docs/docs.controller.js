@@ -1,14 +1,5 @@
 angular.module('usersManagementApp')
     .controller('DocListCtrl', function ($http, $q, CardList, CardAttachments, DocUtils) {
-        console.log("in doclist");
-        this.hello = "WAZZUUUUP!!";
-        // We'll add some changes here
-        this.icons = {
-            doc: "img/file-icons/docx/docx_win-64_32.png",
-            docx: "img/file-icons/docx/docx_win-64_32.png",
-            pdf: "img/file-icons/pdf/pdf-64_32.png"
-        };
-
         this.doclist1 = [];
         var self = this;
 

@@ -276,7 +276,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= yeoman.client %>/assets/images',
-          src: '{,*/}*.{png,jpg,jpeg,gif}',
+          src: '{,**/}*.{png,jpg,jpeg,gif}',
           dest: '<%= yeoman.dist %>/public/assets/images'
         }]
       }
@@ -431,10 +431,7 @@ module.exports = function (grunt) {
       },
       dist: [
         'sass',
-	  // The build hangs on my Linux machine when imagemin is one
-	  // of the tasks. I suspect it isn't needed for this project,
-	  // so I have commented it out. That works!
-        //'imagemin',
+        'imagemin',
         'svgmin'
       ]
     },

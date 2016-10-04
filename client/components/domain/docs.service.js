@@ -7,14 +7,14 @@ angular.module('usersManagementApp')
     })
     .service('DocUtils', [function () {
         var icons = {
-            doc: "img/file-icons/docx/docx_win-64_32.png",
-            docx: "img/file-icons/docx/docx_win-64_32.png",
-            pdf: "img/file-icons/pdf/pdf-64_32.png"
+            doc: "assets/images/file-icons/docx/docx_win-64_32.png",
+            docx: "assets/images/file-icons/docx/docx_win-64_32.png",
+            pdf: "assets/images/file-icons/pdf/pdf-64_32.png"
         };
         var miniIcons = {
-            doc: "img/file-icons/docx/docx_win-24_32.png",
-            docx: "img/file-icons/docx/docx_win-24_32.png",
-            pdf: "img/file-icons/pdf/pdf-24_32.png"
+            doc: "assets/images/file-icons/docx/docx_win-24_32.png",
+            docx: "assets/images/file-icons/docx/docx_win-24_32.png",
+            pdf: "assets/images/file-icons/pdf/pdf-24_32.png"
         };
 
         var fileNameRegex = new RegExp(".+\.(pdf|doc|docx)");
