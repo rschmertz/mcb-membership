@@ -13,6 +13,7 @@ angular.module('usersManagementApp', [
   'ui.grid.cellNav',
   'ui.grid.selection',
   'ui.grid.exporter',
+    'ui.select',
     'angularFileUpload'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {

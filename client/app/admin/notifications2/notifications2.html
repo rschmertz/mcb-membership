@@ -12,6 +12,19 @@
     <div class="row">
       <div class="col-lg-8 col-md-10">
 
+	To:
+	<ui-select multiple ng-model="vm.usersSelected" theme="bootstrap" ng-disabled="vm.disabled" close-on-select="false" style="width: 800px;" title="Choose a person">
+	  <ui-select-match placeholder="Select person...">{{$item.name}} &lt;{{$item.email}}&gt;</ui-select-match>
+	  <ui-select-choices repeat="person.email as person in vm.people">
+	    <div ng-bind-html="person.name | highlight: $select.search"></div>
+	    <small>
+              email: {{person.email}}
+	    </small>
+	  </ui-select-choices>
+	</ui-select>
+	<br>
+	<br>
+	<p>Selected: {{vm.usersSelected}}</p>
 	
 	  <div class="panel panel-default">
 	    <div class="panel-heading">{{vm.isType('email') ? 'Subject' : 'Message'}}</div>

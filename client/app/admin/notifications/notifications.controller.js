@@ -9,6 +9,12 @@ angular.module('usersManagementApp')
     vm.usersSelected = [];
     vm.emailBody = '';
     vm.needUpload = false;
+      vm.people = [
+	  { name: 'Adam', email: 'adam@email.com' },
+	  { name: 'Amalie', email: 'amalie@email.com' },
+	  { name: 'Estefanía', email: 'estefania@email.com' },
+	  { name: 'Adrian', email: 'adrian@email.com' }
+      ];
 
     vm.setMode = function(m) {
       vm.mode = m;
