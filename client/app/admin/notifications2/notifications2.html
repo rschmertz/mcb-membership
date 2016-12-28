@@ -15,16 +15,19 @@
 	To:
 	<ui-select multiple ng-model="vm.usersSelected" theme="bootstrap" ng-disabled="vm.disabled" close-on-select="false" style="width: 800px;" title="Choose a person">
 	  <ui-select-match placeholder="Select person...">{{$item.firstName}} {{$item.lastName}} &lt;{{$item.email}}&gt;</ui-select-match>
-	  <ui-select-choices repeat="person.email as person in vm.users">
+	  <ui-select-choices repeat="person in vm.users">
 	    <div ng-bind-html="person.firstName + ' ' + person.lastName | highlight: $select.search"></div>
 	    <small>
               email: {{person.email}}
 	    </small>
 	  </ui-select-choices>
 	</ui-select>
+	<button type="button" class="btn btn-primary" ng-click="vm.selectAll()">Select All</button>
+	<button type="button" class="btn btn-primary" ng-click="vm.selectActive()">Select Active</button>
+	<button type="button" class="btn btn-primary" ng-click="vm.clearAll()">Clear All</button>
 	<br>
 	<br>
-	<p>Selected: {{vm.usersSelected}}</p>
+	<p>Selected: {{vm.selectedEmails()}}</p>
 	
 	  <div class="panel panel-default">
 	    <div class="panel-heading">{{vm.isType('email') ? 'Subject' : 'Message'}}</div>

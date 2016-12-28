@@ -91,21 +91,25 @@ angular.module('usersManagementApp')
       return item['Membership level'] == 'Active';
     }
 
-    vm.selectAll = function selectAll() {
+    vm.selectActive = function selectActive() {
         vm.usersSelected = _.chain(vm.users)
         .filter(function(item){
-          return (!vm.activeOnly || item['Membership level'] == 'Active');
-        })
-        .map(function(item){ 
-          return item._id; 
+		return (item['Membership level'] == 'Active');
         })
         .value();
+    };
+
+    vm.selectAll = function selectAll() {
+        vm.usersSelected = vm.users;
     }
 
     vm.clearAll = function clearAll() {
         vm.usersSelected = [];
     }
-
+      vm.selectedEmails = function selectedEmails() {
+          return _.map(vm.usersSelected, 'email');
+      }
+      
     vm.send = function() {
       vm.isValidationError = false;
       vm.isSent = false;
