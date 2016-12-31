@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('usersManagementApp')
-  .controller('NotificationsCtrl', function ($scope, User, Group, Notification) {
+  .controller('NotificationsCtrl2', function ($scope, User, Group, Notification) {
     var vm = { };
     vm.type = 'email';
     vm.mode = 'users';
