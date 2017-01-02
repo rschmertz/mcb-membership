@@ -9,12 +9,6 @@ angular.module('usersManagementApp')
     vm.usersSelected = [];
     vm.emailBody = '';
     vm.needUpload = false;
-      vm.people = [
-	  { name: 'Adam', email: 'adam@email.com' },
-	  { name: 'Amalie', email: 'amalie@email.com' },
-	  { name: 'Estefanía', email: 'estefania@email.com' },
-	  { name: 'Adrian', email: 'adrian@email.com' }
-      ];
 
     vm.setMode = function(m) {
       vm.mode = m;
@@ -147,4 +141,20 @@ angular.module('usersManagementApp')
     };
 
     $scope.vm = vm;
+  })
+  .filter('propsFilter', function() {
+      return function(items, props) {
+	  if (angular.isArray(items)) {
+
+	      return _.filter(items, function(item) {
+		  return _.some(props, function (value, propname) {
+		      var itemPropVal = item[propname];
+		      return itemPropVal && itemPropVal.toString().toLowerCase()
+			  .indexOf(value.toLowerCase()) != -1;
+		  })
+	      });
+	  }
+	  console.log("not an array -- did not expect this");
+	  return items;
+      };
   });
