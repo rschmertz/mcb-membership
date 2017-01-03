@@ -133,7 +133,17 @@ angular.module('usersManagementApp')
       respPromise.then(function() {
         vm.isSent = true;  
         vm.isLoading = false;        
-      });
+      },
+        function (rot /* resourceObjThingy */) {
+	    console.log("so I guess thiw worked");
+	    vm.isSent = false;
+	    vm.isSentError = true;
+	    vm.sendFailedMessage = rot.statusText;
+	    vm.isLoading = false;        
+	})
+	  .catch(function () {
+	      console.log("we're in the catch");
+	  });
     };
 
     $scope.vm = vm;
