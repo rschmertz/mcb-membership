@@ -101,7 +101,7 @@ angular.module('usersManagementApp')
         vm.usersSelected = [];
     }
       vm.selectedEmails = function selectedEmails() {
-          return _.map(vm.usersSelected, 'email');
+          return _.map(vm.usersSelected, '_id');
       }
       
     vm.send = function() {
