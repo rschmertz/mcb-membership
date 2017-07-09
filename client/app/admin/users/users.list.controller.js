@@ -90,6 +90,10 @@ angular.module('usersManagementApp')
 
     var columnDefs = [
         {name: "lastName",
+	 splort: {
+	     direction: uiGridConstants.ASC,
+	     priority: 1,
+	 },
          width: 110},
         {name: "firstName",
          width: 100},

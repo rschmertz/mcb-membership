@@ -27,7 +27,8 @@ exports.index = function(req, res) {
     console.log("req.user is", req.user);
     checkAdmin(req.user, function returnIndex(err, isAdmin) {
         if (isAdmin) {
-            User.find({}, '-salt -hashedPassword', function (err, users) {
+            User.find({}).select('-salt -hashedPassword').sort({lastName: 1 })
+		.exec(function (err, users) {
                 if(err) return res.send(500, err);
                 res.json(200, users);
             });
@@ -40,6 +41,7 @@ exports.index = function(req, res) {
                     City: 1,
                     'Group participation': 1,
                 })
+		.sort({ 'Instrument 1': 1 })
                 .exec(function (err, users) {
                     if(err) return res.send(500, err);
                     res.json(200, users);
