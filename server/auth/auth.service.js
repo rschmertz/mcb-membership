@@ -48,7 +48,6 @@ function hasRole(roleRequired) {
     .use(function meetsRequirements(req, res, next) {
 
       Group.findOne({ name: roleRequired}, function(err, adminRole) {
-        console.log(req.user.groups);
         var hasRole = _.some(req.user.groups, function(g) {
           return g == adminRole._id.toString();
         });

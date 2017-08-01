@@ -88,6 +88,7 @@
 
     <button type="button" class="btn btn-dark btn-lg" ng-click="vm.send()">&nbsp;&nbsp;Send&nbsp;&nbsp;</button>
     <div class="alert alert-danger" ng-show="vm.isValidationError">Select at least one user or group and fill message body first.</div>
+    <div class="alert alert-danger" ng-show="vm.isSentError">Error sending message: {{vm.sendFailedMessage}}</div>
     <div class="alert alert-success" ng-show="vm.isSent">Notification successfully sent.</div>
     <div class="alert alert-warning" ng-show="vm.isLoading">Loading...</div>
     <div class="clearfix"></div>

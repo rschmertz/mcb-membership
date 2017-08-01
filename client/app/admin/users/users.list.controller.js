@@ -12,7 +12,7 @@ angular.module('usersManagementApp')
       $scope.users = _.without($scope.users, user);
     };
   })
-  .controller('UsersGridCtrl', function ($scope, $http, $location, $modal, Auth, User)
+  .controller('UsersGridCtrl', function ($scope, $http, $location, $modal, uiGridConstants, Auth, User)
 {
 
     var user = angular.copy(Auth.getCurrentUser());
@@ -90,11 +90,25 @@ angular.module('usersManagementApp')
 
     var columnDefs = [
         {name: "lastName",
+	 splort: {
+	     direction: uiGridConstants.ASC,
+	     priority: 1,
+	 },
          width: 110},
         {name: "firstName",
          width: 100},
-        {name: "Membership level",
-         width: 108},
+        {
+            name: "Membership level",
+            width: 108,
+            filter: {
+                condition: uiGridConstants.filter.STARTS_WITH,
+                selectOptions: [
+                    { value: 'Active', label: 'Active' },
+                    { value: 'Inactive', label: 'Inactive' },
+                ],
+                type: uiGridConstants.filter.SELECT,
+            },
+        },
         {name: "email",
          width: 190},
         {name: "Instrument 1",
