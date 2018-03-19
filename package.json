@@ -59,7 +59,7 @@
     "grunt-protractor-runner": "^1.1.0",
     "grunt-asset-injector": "^0.1.0",
     "grunt-karma": "~0.8.2",
-    "grunt-build-control": "DaftMonk/grunt-build-control",
+    "grunt-build-control": "github:daftmonk/grunt-build-control",
     "grunt-mocha-test": "~0.10.2",
     "grunt-contrib-sass": "^0.7.3",
     "jit-grunt": "^0.5.0",
@@ -102,5 +102,16 @@
     "test": "grunt test",
     "update-webdriver": "node node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update"
   },
-  "private": true
+  "private": true,
+  "description": "This app was generated using the angular-fullstack Yeoman generator v. 2.0.13 in Nov. 2014. (https://github.com/angular-fullstack/generator-angular-fullstack/tree/9a8dac60bce916d6ab6083976728422b2c766ea5)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rschmertz/mcb-membership.git"
+  },
+  "author": "Lean35, rschmertz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rschmertz/mcb-membership/issues"
+  },
+  "homepage": "https://github.com/rschmertz/mcb-membership#readme"
 }
