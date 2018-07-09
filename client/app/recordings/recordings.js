@@ -6,6 +6,7 @@ angular.module('usersManagementApp')
       .state('recordings', {
         url: '/recordings',
         templateUrl: 'app/recordings/recordings.html',
-        controller: 'RecordingsCtrl'
+          controller: 'RecordingsCtrl',
+          controllerAs: 'recordings',
       });
   });

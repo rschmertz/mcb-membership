@@ -2,5 +2,5 @@
 
 angular.module('usersManagementApp')
   .controller('RecordingsCtrl', function ($scope) {
-    $scope.message = 'Hello';
+      this.message = 'Hello';
   });
