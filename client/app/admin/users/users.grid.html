@@ -3,6 +3,7 @@
   <button class="selected-row-action" ng-click="deleteMember()" ng-if="user.isAdmin" ng-disabled="!rowSelected()">Delete member</button>
   <button class="selected-row-action" ng-click="editMember()" ng-if="user.isAdmin" ng-disabled="!rowSelected()">Edit member</button>
   <button class="selected-row-action" ng-click="resetPassword()" ng-if="user.isAdmin" ng-disabled="!rowSelected()">Reset Password</button>
+  <button class="selected-row-action" ng-click="setInitialPasswords()" ng-if="user.isAdmin">Issue first-time Passwords</button>
   <div ui-grid="gridOptions" ui-grid-cellNav ui-grid-selection ui-grid-exporter  class="memberList"></div>
   <script type="text/ng-template" id="confirmationDialog">
      <div class="modal-body">

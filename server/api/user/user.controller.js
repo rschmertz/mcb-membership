@@ -156,6 +156,15 @@ exports.resetPassword = function(req, res, next) {
     });
 };
 
+exports.sendNewPasswords = function(req, res, next) {
+    console.log("This is sendNewPasswords");
+    User.find({'hashedPassword': { '$eq' : '' }}, function(err, doc) {
+        
+        console.dir(doc);
+    });
+    res.send(200);
+};
+
 /**
  * Updates profile information
  */

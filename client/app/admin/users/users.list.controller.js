@@ -64,6 +64,10 @@ angular.module('usersManagementApp')
         });          
       }
 
+    $scope.setInitialPasswords = function () {
+	console.log("yeah, we're here");
+	User.setInitialPasswords();
+    };
     $scope.deleteMember = function deleteMember() {
         var row = getSelectedRow();
         if (row.length != 1) {
