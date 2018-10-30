@@ -18,6 +18,12 @@ angular.module('usersManagementApp')
           controller:'password'
         }
       },
+      setInitialPasswords: {
+        method: 'POST',
+        params: {
+            controller: 'sendNewPasswords',
+        },
+      },
       register: {
         method: 'POST',
         params: {

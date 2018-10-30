@@ -1,0 +1,14 @@
+<div class="col-md-12">
+  <h1>Recordings and downloads</h1>
+  This is the recordings view.
+  <h2>Kaleidoscope Concert, Dec. 8, 2017</h2>
+  <ol>
+    <li ng-repeat="mp3 in recordings.kscope2017files">
+      <a target="_self" ng-href="/assets/mp3s/{{mp3.fileName }}"
+	 download="{{mp3.fileName}}">{{ mp3.displayName }}</a>
+    </li>
+  </ol>
+  <h2>Video Recordings</h2>
+  <a target="_self" href="/assets/mp3s/MCBNextNow2015.mp4" downloads="MCBNextNow2015.mp4">MCB NextNOW Concert 2016</a>
+</div>
+
