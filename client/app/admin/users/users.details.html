@@ -159,6 +159,16 @@
         </div>
 
         <div class="form-group">
+          <label>Get Emails Even if Inactive</label>
+          <!--
+          <button type="button" class="btn btn-primary" ng-model="user.stillGetEmails" uib-btn-checkbox xbtn-checkbox-true="1" xbtn-checkbox-false="0">
+            Single Toggle
+        </button>
+        -->
+          <input type="checkbox" name="getEmails" class="no-thx-form-control" ng-model="user.stillGetEmails">
+        </div>
+
+        <div class="form-group">
           <label>Groups</label>
 
           <div class="list-group">

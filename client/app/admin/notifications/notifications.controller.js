@@ -67,7 +67,7 @@ angular.module('usersManagementApp')
 
         vm.groupsSelected = _.chain(vm.groups)
         .filter(function(item){
-          return item['Membership level'] == 'Active' && vm.groupsSelected.indexOf(item._id) != -1;
+          return vm.groupsSelected.indexOf(item._id) != -1;
         })
         .map(function(item){ 
           return item._id; 
@@ -78,17 +78,21 @@ angular.module('usersManagementApp')
       }
     }
 
+    // Reminder: filter, well, filters the users, i.e., decides which are shown
     vm.activeFilter = function(item){
       if(!vm.activeOnly){
         return true;
       }
-      return item['Membership level'] == 'Active';
+      return item['Membership level'] == 'Active'  || item.stillGetEmails;
     }
 
+    // ...and "selectAll", well, selects all users from the displayed list.
+    // there's some redundancy here I'd like to address.
     vm.selectAll = function selectAll() {
         vm.usersSelected = _.chain(vm.users)
         .filter(function(item){
-          return (!vm.activeOnly || item['Membership level'] == 'Active');
+          return (!vm.activeOnly || item['Membership level'] == 'Active'
+          || item.stillGetEmails);
         })
         .map(function(item){ 
           return item._id; 

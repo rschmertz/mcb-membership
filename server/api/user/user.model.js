@@ -28,6 +28,7 @@ var UserSchema = new Schema({
     Ext: String,
     'Group participation': String,
     'Membership level': String,
+    stillGetEmails : Boolean,
   hashedPassword: String,
   provider: String,
   salt: String,
