@@ -15,6 +15,7 @@ var UserSchema = new Schema({
     'Instrument 1': String,
     'Instrument 2': String,
     'Instrument 3': String,
+    auxPercussion : Boolean,
     'Street Address 1': String,
     'Street Address 2': String,
     City: String,
