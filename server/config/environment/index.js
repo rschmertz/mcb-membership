@@ -49,7 +49,7 @@ var all = {
 
   sendgrid: {
     userName: process.env.SENDGRID_USERNAME,
-    password: process.env.SENDGRID_PASSWORD,
+      apikey: process.env.SENDGRID_KEY,
       fromEmail: process.env.SENDGRID_FROMEMAIL || 'NoReply@lean35.com',
       fromName: process.env.SENDGRID_FROMEMAIL_NAME || "Lean35 Notifier",
   },
