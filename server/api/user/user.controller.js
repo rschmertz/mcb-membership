@@ -6,7 +6,7 @@ var Group = require('../group/group.model');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
-var sendgrid  = require('sendgrid')(config.sendgrid.userName, config.sendgrid.password);
+var sendgrid  = require('sendgrid')(config.sendgrid.apikey);
 var _ = require('lodash');
 
 var validationError = function(res, err) {

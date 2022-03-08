@@ -6,7 +6,7 @@ var NotificationLog = require('../notificationLog/notificationLog.model');
 var User = require('../user/user.model');
 var Group = require('../group/group.model');
 var config = require('../../config/environment');
-var sendgrid  = require('sendgrid')(config.sendgrid.userName, config.sendgrid.password);
+var sendgrid  = require('sendgrid')(config.sendgrid.apikey);
 var twilio = require('twilio')(config.twilio.accountSid, config.twilio.authToken);
 
 
